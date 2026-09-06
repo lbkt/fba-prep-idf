@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Suivi des mises en ligne — AEGIS</title>
+<title>Suivi des mises en ligne — FBA PREP IDF</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body data-section="aegis-suivi-miseenligne">
+<body data-section="fba-suivi-miseenligne">
 <script>
 /* GARDE D'ACCÈS — vérifie la permission avant d'afficher la page. */
 (function(){
@@ -36,45 +36,42 @@
 
 <style>
 :root{
-  --bg:#0B1120; --bg2:#111A30; --panel:#16223F; --panel2:#1E2C4F; --line:#28344F;
-  --blue:#3B82F6; --violet:#8B5CF6; --pink:#EC4899; --green:#34D399; --amber:#F5B301; --red:#F87171;
-  --txt:#EEF2FA; --muted:#95A2BC; --dim:#657191;
-  --grad3: linear-gradient(135deg, var(--blue), var(--violet) 55%, var(--pink));
+  --bg:#F4F6FA; --surface:#FFFFFF; --line:#E3E8F0; --line2:#D1D9E6;
+  --navy:#152238; --amber:#F5B301; --amber-dark:#D89A00;
+  --txt:#152238; --muted:#5A6B85; --dim:#8A97AD;
+  --green:#0F7A4E; --red:#B23434;
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:Inter,-apple-system,sans-serif;background:
-  radial-gradient(1200px 600px at 80% -10%, rgba(139,92,246,.18), transparent 60%),
-  radial-gradient(1000px 500px at -10% 10%, rgba(59,130,246,.16), transparent 55%),
-  var(--bg);color:var(--txt);min-height:100vh}
+body{margin:0;font-family:Inter,-apple-system,sans-serif;background:var(--bg);color:var(--txt);min-height:100vh}
 .wrap{max-width:1040px;margin:0 auto;padding:26px 20px 60px}
-.top{display:flex;align-items:center;gap:14px;margin-bottom:26px}
-.back{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--muted);text-decoration:none;font-size:13px;font-weight:600}
-.back:hover{color:var(--txt);border-color:var(--blue)}
-h1{font-size:26px;font-weight:800;margin:0;letter-spacing:-.02em}
-h1 .g{background:var(--grad3);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.top{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.back{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border:1px solid var(--line2);border-radius:10px;background:var(--surface);color:var(--muted);text-decoration:none;font-size:13px;font-weight:600}
+.back:hover{color:var(--navy);border-color:var(--amber)}
+h1{font-size:26px;font-weight:800;margin:0;letter-spacing:-.02em;color:var(--navy)}
+h1 .g{color:var(--amber-dark)}
 .sub{color:var(--muted);font-size:13.5px;margin-top:4px}
 .stats{display:flex;gap:14px;flex-wrap:wrap;margin:22px 0}
-.stat{flex:1;min-width:150px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
-.stat .n{font-size:26px;font-weight:800}
+.stat{flex:1;min-width:150px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 6px 24px rgba(21,34,56,.06)}
+.stat .n{font-size:26px;font-weight:800;color:var(--navy)}
 .stat .l{font-size:12px;color:var(--muted);font-weight:600;margin-top:2px}
-.stat.ok .n{color:var(--green)} .stat.wait .n{color:var(--amber)} .stat.err .n{color:var(--red)}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 10px 40px rgba(0,0,0,.25)}
+.stat.ok .n{color:var(--green)} .stat.wait .n{color:var(--amber-dark)} .stat.err .n{color:var(--red)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 6px 24px rgba(21,34,56,.06)}
 .qtitle{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.qtitle h2{font-size:16px;font-weight:800;margin:0}
-.refresh{background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:9px;padding:7px 12px;font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer}
+.qtitle h2{font-size:16px;font-weight:800;margin:0;color:var(--navy)}
+.refresh{background:var(--surface);border:1px solid var(--line2);color:var(--muted);border-radius:9px;padding:7px 12px;font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer}
 table{width:100%;border-collapse:collapse;font-size:13px}
 th{text-align:left;color:var(--dim);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding:0 10px 10px;border-bottom:1px solid var(--line)}
 td{padding:12px 10px;border-bottom:1px solid var(--line);color:var(--txt)}
 td.asin{font-family:ui-monospace,Menlo,monospace;font-weight:700}
 .badge{display:inline-block;font-size:11px;font-weight:800;padding:4px 9px;border-radius:7px}
-.b-wait{background:rgba(245,179,1,.14);color:var(--amber)}
-.b-ok{background:rgba(52,211,153,.14);color:var(--green)}
-.b-err{background:rgba(248,113,113,.14);color:var(--red)}
+.b-wait{background:#FEF3D0;color:#8a6a00}
+.b-ok{background:#DCF5E9;color:#0F7A4E}
+.b-err{background:#FBE0E0;color:#B23434}
 .empty{color:var(--dim);text-align:center;padding:30px 0;font-size:13.5px}
 </style>
 
 <div class="wrap">
-  <div class="top"><a class="back" href="aegis.html">← Console</a></div>
+  <div class="top"><a class="back" href="fba.html">← Console FBA PREP IDF</a></div>
   <h1>Suivi des <span class="g">mises en ligne</span></h1>
   <div class="sub">Historique des ASIN ajoutés au catalogue : date, quantité et statut.</div>
 
