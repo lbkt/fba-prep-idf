@@ -287,6 +287,7 @@
   .field input,.field select,.field textarea{width:100%; padding:12px 14px; border:1.5px solid var(--line-2); border-radius:10px; font-family:'Inter',sans-serif; font-size:15px; color:var(--txt); background:var(--bg)}
   .field input:focus,.field select:focus,.field textarea:focus{outline:none; border-color:var(--amber); background:var(--surface)}
   .form-ok{display:none; background:var(--amber-soft); border:1px solid var(--amber); border-radius:10px; padding:14px 16px; font-size:14px; color:var(--navy); margin-top:6px}
+  .form-err{display:none; background:#FDECEC; border:1px solid #F3B4B4; border-radius:10px; padding:14px 16px; font-size:14px; color:#8A1C1C; margin-top:6px}
   .call-card{background:var(--navy); color:var(--txt-on-dark); border-radius:18px; padding:32px}
   .call-card h3{font-size:22px; margin-bottom:10px}
   .call-card p{color:var(--muted-on-dark); margin:0 0 22px}
@@ -824,17 +825,22 @@
     </div>
     <div class="contact-grid">
       <div class="card-box">
-        <form id="devisForm" onsubmit="return sendDevis(event)">
-          <div class="field"><label data-fr="E-mail *" data-en="Email *">E-mail *</label><input type="email" id="email" required placeholder="vous@exemple.com" data-fr-ph="vous@exemple.com" data-en-ph="you@example.com"></div>
+        <form id="devisForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="0121b5b1-bd86-4f23-957a-46a795c5a604">
+          <input type="hidden" name="subject" value="Nouvelle demande de devis — FBA PREP IDF">
+          <input type="hidden" name="from_name" value="Site FBA PREP IDF">
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="field"><label data-fr="E-mail *" data-en="Email *">E-mail *</label><input type="email" name="email" id="email" required placeholder="vous@exemple.com" data-fr-ph="vous@exemple.com" data-en-ph="you@example.com"></div>
           <div class="field"><label data-fr="Nombre d'unités par mois (en moyenne)" data-en="Units per month (average)">Nombre d'unités par mois (en moyenne)</label>
-            <select id="vol"><option data-fr="Moins de 500" data-en="Under 500">Moins de 500</option><option>500 – 1000</option><option>1000 – 5000</option><option data-fr="Plus de 5000" data-en="Over 5000">Plus de 5000</option></select>
+            <select name="volume_mensuel" id="vol"><option data-fr="Moins de 500" data-en="Under 500">Moins de 500</option><option>500 – 1000</option><option>1000 – 5000</option><option data-fr="Plus de 5000" data-en="Over 5000">Plus de 5000</option></select>
           </div>
           <div class="field"><label data-fr="Type d'approvisionnement" data-en="Sourcing type">Type d'approvisionnement</label>
-            <select id="type"><option data-fr="Online arbitrage" data-en="Online arbitrage">Online arbitrage</option><option>Wholesale</option><option>Private label</option><option data-fr="Mixte" data-en="Mixed">Mixte</option></select>
+            <select name="type_approvisionnement" id="type"><option data-fr="Online arbitrage" data-en="Online arbitrage">Online arbitrage</option><option>Wholesale</option><option>Private label</option><option data-fr="Mixte" data-en="Mixed">Mixte</option></select>
           </div>
-          <div class="field"><label data-fr="Votre message (facultatif)" data-en="Your message (optional)">Votre message (facultatif)</label><textarea id="msg" rows="3" placeholder="Parlez-nous de vos produits, vos volumes, vos besoins…" data-fr-ph="Parlez-nous de vos produits, vos volumes, vos besoins…" data-en-ph="Tell us about your products, volumes and needs…"></textarea></div>
+          <div class="field"><label data-fr="Votre message (facultatif)" data-en="Your message (optional)">Votre message (facultatif)</label><textarea name="message" id="msg" rows="3" placeholder="Parlez-nous de vos produits, vos volumes, vos besoins…" data-fr-ph="Parlez-nous de vos produits, vos volumes, vos besoins…" data-en-ph="Tell us about your products, volumes and needs…"></textarea></div>
           <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center" data-fr="Envoyer ma demande →" data-en="Send my request →">Envoyer ma demande →</button>
-          <div class="form-ok" id="formOk" data-fr="Votre logiciel de messagerie va s'ouvrir avec votre demande pré-remplie. Il ne vous reste qu'à l'envoyer 👍" data-en="Your email app will open with your request pre-filled. Just hit send 👍">Votre logiciel de messagerie va s'ouvrir avec votre demande pré-remplie. Il ne vous reste qu'à l'envoyer 👍</div>
+          <div class="form-ok" id="formOk" data-fr="Merci ! Votre demande a bien été envoyée. Nous vous répondons rapidement." data-en="Thank you! Your request has been sent. We'll get back to you shortly.">Merci ! Votre demande a bien été envoyée. Nous vous répondons rapidement.</div>
+          <div class="form-err" id="formErr" data-fr="Une erreur est survenue. Réessayez, ou écrivez-nous à contact@fbaprepidf.com." data-en="Something went wrong. Please retry, or email contact@fbaprepidf.com.">Une erreur est survenue. Réessayez, ou écrivez-nous à contact@fbaprepidf.com.</div>
         </form>
       </div>
       <div class="call-card" id="appel">
@@ -846,7 +852,7 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> <span data-fr="Sans engagement" data-en="No commitment">Sans engagement</span></li>
         </ul>
         <!-- ⚠️ À REMPLACER par ton vrai lien Calendly -->
-        <a href="https://calendly.com/" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%; justify-content:center" data-fr="Choisir un créneau →" data-en="Pick a time →">Choisir un créneau →</a>
+        <a href="https://calendly.com/lbkt-seller/30min" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%; justify-content:center" data-fr="Choisir un créneau →" data-en="Pick a time →">Choisir un créneau →</a>
       </div>
     </div>
   </div>
@@ -902,15 +908,20 @@
     document.getElementById('btnEN').classList.toggle('active', l==='en');
   }
 
-  function sendDevis(e){
-    e.preventDefault();
-    var g=function(id){return document.getElementById(id).value;};
-    var sujet=encodeURIComponent('Demande de devis - FBA PREP IDF');
-    var corps=encodeURIComponent('Email : '+g('email')+'\n'+'Volume / mois : '+g('vol')+'\n'+'Approvisionnement : '+g('type')+'\n\nMessage :\n'+g('msg'));
-    document.getElementById('formOk').style.display='block';
-    window.location.href='mailto:contact@fbaprepidf.com?subject='+sujet+'&body='+corps;
-    return false;
-  }
+  (function(){
+    var form=document.getElementById('devisForm'); if(!form) return;
+    var ok=document.getElementById('formOk'), err=document.getElementById('formErr');
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      if(ok)ok.style.display='none'; if(err)err.style.display='none';
+      var btn=form.querySelector('button[type=submit]'); var t=btn.textContent; btn.disabled=true; btn.textContent='…';
+      fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)})
+        .then(function(r){return r.json();})
+        .then(function(j){ if(j.success){ form.reset(); if(ok)ok.style.display='block'; } else { if(err)err.style.display='block'; } })
+        .catch(function(){ if(err)err.style.display='block'; })
+        .then(function(){ btn.disabled=false; btn.textContent=t; });
+    });
+  })();
 
   (function(){
     var sec=document.querySelector('.journey .jscatter'), journey=document.querySelector('.journey');
