@@ -738,6 +738,13 @@
           <input type="hidden" name="access_key" value="0121b5b1-bd86-4f23-957a-46a795c5a604">
           <input type="hidden" name="subject" value="Nouvelle demande de devis — FBA PREP IDF">
           <input type="hidden" name="from_name" value="Site FBA PREP IDF">
+          <input type="hidden" name="origine_visite" value="">
+          <input type="hidden" name="page_precedente" value="">
+          <input type="hidden" name="utm_source" value="">
+          <input type="hidden" name="utm_medium" value="">
+          <input type="hidden" name="utm_campaign" value="">
+          <input type="hidden" name="utm_term" value="">
+          <input type="hidden" name="gclid" value="">
           <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="field"><label data-fr="E-mail *" data-en="Email *">E-mail *</label><input type="email" name="email" id="email" required placeholder="vous@exemple.com" data-fr-ph="vous@exemple.com" data-en-ph="you@example.com"></div>
           <div class="field"><label data-fr="Nombre d'unités par mois (en moyenne)" data-en="Units per month (average)">Nombre d'unités par mois (en moyenne)</label>
@@ -818,10 +825,35 @@
   }
 
   (function(){
+    function clean(s,n){return (s||'').toString().slice(0,n||200);}
+    window.fillOrigin=function(form){
+      try{
+        var p=new URLSearchParams(location.search),ref=document.referrer||'',host='',path='';
+        if(ref){try{var u=new URL(ref);host=u.hostname.replace(/^www\./,'');path=u.pathname;}catch(x){}}
+        var same=(host==='fba-prep-idf.fr'),medium=(p.get('utm_medium')||''),label='Direct ou inconnu';
+        if(p.get('gclid')||/cpc|ppc|paid/i.test(medium)) label='Annonce Google Ads';
+        else if(/google_business_profile/i.test(medium)) label='Fiche Google Business';
+        else if(same && path.indexOf('/blog')===0) label='Blog : '+path;
+        else if(same) label='Site (page : '+path+')';
+        else if(/google\./.test(host)) label='Recherche Google (organique)';
+        else if(host) label='Autre site : '+host;
+        var set=function(n,v){var el=form.querySelector('[name="'+n+'"]');if(el)el.value=clean(v);};
+        set('origine_visite',label);
+        set('page_precedente',ref);
+        set('utm_source',p.get('utm_source'));
+        set('utm_medium',medium);
+        set('utm_campaign',p.get('utm_campaign'));
+        set('utm_term',p.get('utm_term'));
+        set('gclid',p.get('gclid'));
+      }catch(e){}
+    };
+  })();
+    (function(){
     var form=document.getElementById('devisForm'); if(!form) return;
     var ok=document.getElementById('formOk'), err=document.getElementById('formErr');
     form.addEventListener('submit',function(e){
       e.preventDefault();
+      if(window.fillOrigin)window.fillOrigin(form);
       if(ok)ok.style.display='none'; if(err)err.style.display='none';
       var btn=form.querySelector('button[type=submit]'); var t=btn.textContent; btn.disabled=true; btn.textContent='…';
       fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)})
