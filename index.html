@@ -796,6 +796,8 @@
         <a href="#appel" data-fr="Programmer un appel" data-en="Book a call">Programmer un appel</a>
         <a href="#faq" data-fr="FAQ" data-en="FAQ">FAQ</a>
         <a href="/cgv" data-fr="Conditions générales" data-en="Terms &amp; conditions">Conditions générales</a>
+      <a href="/privacy-policy" data-fr="Politique de confidentialité" data-en="Privacy policy">Politique de confidentialité</a>
+      <a href="#" id="cookieSettings" data-fr="Gérer les cookies" data-en="Cookie settings">Gérer les cookies</a>
       </div>
       <div class="foot-contact">
         <h4 data-fr="Contact" data-en="Contact">Contact</h4>
@@ -858,7 +860,7 @@
       var btn=form.querySelector('button[type=submit]'); var t=btn.textContent; btn.disabled=true; btn.textContent='…';
       fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)})
         .then(function(r){return r.json();})
-        .then(function(j){ if(j.success){ form.reset(); if(ok)ok.style.display='block'; } else { if(err)err.style.display='block'; } })
+        .then(function(j){ if(j.success){ form.reset(); if(window.fbaTrackLead)window.fbaTrackLead(); if(ok)ok.style.display='block'; } else { if(err)err.style.display='block'; } })
         .catch(function(){ if(err)err.style.display='block'; })
         .then(function(){ btn.disabled=false; btn.textContent=t; });
     });
@@ -977,6 +979,69 @@ document.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener
   }
   document.addEventListener('DOMContentLoaded',show);
   window.addEventListener('load',function(){ go(); setTimeout(go,400); });
+})();
+</script>
+<style data-cookie>
+.cb{position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;display:flex;justify-content:center;pointer-events:none}
+.cb[hidden]{display:none}
+.cb-in{pointer-events:auto;max-width:760px;width:100%;background:#fff;border:1px solid var(--line-2);border-radius:16px;box-shadow:0 12px 40px rgba(21,34,56,.22);padding:20px 22px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.cb-txt{flex:1 1 320px;min-width:0}
+.cb-t{font-family:var(--num);font-weight:800;font-size:15px;color:var(--navy);margin:0 0 4px}
+.cb-p{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0}
+.cb-p a{color:var(--navy);text-decoration:underline}
+.cb-btns{display:flex;gap:10px;flex:0 0 auto}
+.cb-btn{font:inherit;font-weight:700;font-size:14px;cursor:pointer;padding:11px 20px;border-radius:10px;border:1.5px solid var(--navy);background:#fff;color:var(--navy);min-width:104px}
+.cb-btn:hover,.cb-btn:focus-visible{background:var(--navy);color:#fff;outline:none}
+@media(max-width:560px){.cb-btns{width:100%}.cb-btn{flex:1}}
+</style>
+<div id="cookieBanner" class="cb" role="dialog" aria-modal="false" aria-labelledby="cbTitle" hidden>
+  <div class="cb-in">
+    <div class="cb-txt">
+      <p id="cbTitle" class="cb-t" data-fr="Cookies et mesure publicitaire" data-en="Cookies and ad measurement">Cookies et mesure publicitaire</p>
+      <p class="cb-p"><span data-fr="Avec votre accord, nous utilisons un cookie Google Ads pour mesurer l'efficacité de nos annonces. Aucun cookie n'est déposé avant votre choix, et refuser n'a aucune conséquence sur l'utilisation du site." data-en="With your consent, we use a Google Ads cookie to measure how effective our ads are. No cookie is set before you choose, and declining has no effect on how you use the site.">Avec votre accord, nous utilisons un cookie Google Ads pour mesurer l'efficacité de nos annonces. Aucun cookie n'est déposé avant votre choix, et refuser n'a aucune conséquence sur l'utilisation du site.</span> <a href="/privacy-policy" data-fr="En savoir plus" data-en="Learn more">En savoir plus</a></p>
+    </div>
+    <div class="cb-btns">
+      <button type="button" class="cb-btn" id="cbNo" data-fr="Refuser" data-en="Decline">Refuser</button>
+      <button type="button" class="cb-btn" id="cbYes" data-fr="Accepter" data-en="Accept">Accepter</button>
+    </div>
+  </div>
+</div>
+<script data-cookie>
+(function(){
+  var TAG='AW-784741976', KEY='fbaprep_cookie_consent', MAXAGE=180*24*3600*1000;
+  /* Libellé de conversion Google Ads (AW-784741976/XXXX) : à renseigner pour compter les devis. */
+  window.FBA_CONV_LABEL='';
+  var banner=document.getElementById('cookieBanner'); if(!banner) return;
+  function read(){ try{ var v=JSON.parse(localStorage.getItem(KEY)||'null'); if(v&&v.t&&(Date.now()-v.t)<MAXAGE) return v.v; }catch(e){} return null; }
+  function write(v){ try{ localStorage.setItem(KEY,JSON.stringify({v:v,t:Date.now()})); }catch(e){} }
+  function loadTag(){
+    if(window.__fbaTag) return; window.__fbaTag=true;
+    var s=document.createElement('script'); s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+TAG; document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[]; window.gtag=function(){ window.dataLayer.push(arguments); };
+    window.gtag('js',new Date()); window.gtag('config',TAG);
+  }
+  function purge(){
+    try{
+      var host=location.hostname, root=host.replace(/^www\./,'');
+      document.cookie.split(';').forEach(function(c){
+        var n=c.split('=')[0].trim();
+        if(/^(_gcl|_ga|_gac|_gid|IDE|test_cookie)/.test(n)){
+          ['','; domain='+host,'; domain=.'+root].forEach(function(d){ document.cookie=n+'=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/'+d; });
+        }
+      });
+    }catch(e){}
+  }
+  window.fbaTrackLead=function(){
+    if(window.__fbaTag && window.FBA_CONV_LABEL && window.gtag){ window.gtag('event','conversion',{send_to:TAG+'/'+window.FBA_CONV_LABEL}); }
+  };
+  function show(){ banner.hidden=false; }
+  function hide(){ banner.hidden=true; }
+  var c=read();
+  if(c==='granted') loadTag(); else if(c===null) show();
+  document.getElementById('cbYes').addEventListener('click',function(){ write('granted'); hide(); loadTag(); });
+  document.getElementById('cbNo').addEventListener('click',function(){ var was=window.__fbaTag; write('denied'); hide(); purge(); if(was) location.reload(); });
+  var st=document.getElementById('cookieSettings');
+  if(st) st.addEventListener('click',function(e){ e.preventDefault(); show(); });
 })();
 </script>
 </body>
