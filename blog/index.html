@@ -1,39 +1,79 @@
 <!DOCTYPE html><html lang="fr"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Blog & ressources — conseils Amazon FBA | FBA PREP IDF</title>
-<meta name="description" content="Conseils pour vendre mieux sur Amazon FBA : choisir un prep center, online arbitrage vs wholesale, étiquetage FNSKU, et plus.">
+<title>Blog & ressources — conseils prep center Amazon FBA | FBA PREP IDF</title>
+<meta name="description" content="Guides et conseils sur le prep center Amazon FBA : définition, prix, choix du prestataire, online arbitrage, wholesale, étiquetage FNSKU.">
 <link rel="canonical" href="https://www.fba-prep-idf.fr/blog">
 <meta property="og:type" content="website"><meta property="og:title" content="Blog & ressources — FBA PREP IDF">
-<meta property="og:description" content="Conseils pour vendre mieux sur Amazon FBA."><meta property="og:url" content="https://www.fba-prep-idf.fr/blog">
+<meta property="og:description" content="Guides et conseils sur le prep center Amazon FBA."><meta property="og:url" content="https://www.fba-prep-idf.fr/blog">
 <meta property="og:image" content="https://www.fba-prep-idf.fr/og-image.png">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#152238;--amber:#F5B301;--amber-d:#D89A00;--amber-soft:#FFE9A8;--bg:#FCFBF8;--surface:#fff;--muted:#5A6B85;--dim:#8A97AD;--line:#ECE7DE;--shadow:0 1px 2px rgba(21,34,56,.04),0 8px 30px rgba(21,34,56,.06)}
+:root{--navy:#152238;--amber:#F5B301;--amber-d:#D89A00;--amber-soft:#FFE9A8;--bg:#FCFBF8;--surface:#fff;--muted:#5A6B85;--dim:#8A97AD;--line:#ECE7DE}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--navy);font-family:Inter,system-ui,sans-serif;line-height:1.7}
 .wrap{max-width:1000px;margin:0 auto;padding:0 24px}
 header{border-bottom:1px solid var(--line);background:rgba(252,251,248,.92);position:sticky;top:0;z-index:10}
 .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
-.logo{font-family:Montserrat;font-weight:900;font-size:18px;text-decoration:none;color:var(--navy)}.logo b{color:var(--amber-d)}
+.logo{display:flex;align-items:center}.logo img{height:30px;width:auto;display:block}
 .nav a.home{color:var(--muted);font-weight:600;font-size:15px;text-decoration:none}.nav a.home:hover{color:var(--navy)}
 .head{padding:60px 0 8px;text-align:center}
 .eyebrow{font-weight:700;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-d)}
 h1{font-family:Montserrat;font-weight:900;text-transform:uppercase;font-size:clamp(30px,4.4vw,44px);margin:12px 0 8px}
-.head p{color:var(--muted);font-size:18px;margin:0 auto;max-width:600px}
-.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:44px 0 80px}
+.head p{color:var(--muted);font-size:18px;margin:0 auto;max-width:620px}
+.tools{margin:30px 0 0}
+.blog-search{max-width:560px;margin:0 auto 18px;position:relative}
+.blog-search input{width:100%;padding:13px 16px 13px 46px;border:1.5px solid var(--line);border-radius:12px;font-family:Inter,sans-serif;font-size:15px;background:var(--surface);color:var(--navy)}
+.blog-search input:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 4px rgba(245,179,1,.14)}
+.blog-search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:var(--dim)}
+.cats{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:0 0 6px}
+.cat{background:var(--surface);border:1.5px solid var(--line);color:var(--muted);font-family:Inter,sans-serif;font-weight:600;font-size:14px;padding:8px 16px;border-radius:999px;cursor:pointer;transition:.15s}
+.cat:hover{border-color:var(--amber);color:var(--navy)}
+.cat.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:34px 0 80px}
 .post{display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;text-decoration:none;color:var(--navy);transition:transform .2s,box-shadow .2s}
 .post:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(21,34,56,.10)}
 .post-tag{align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-d);background:var(--amber-soft);padding:5px 9px;border-radius:6px}
 .post h3{font-size:19px;line-height:1.3;margin:0}.post p{color:var(--muted);font-size:14.5px;line-height:1.6;margin:0;flex:1}
 .post-meta{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--dim);margin-top:6px}.post-link{color:var(--navy);font-weight:600}.post:hover .post-link{color:var(--amber-d)}
+.nores{display:none;grid-column:1/-1;text-align:center;color:var(--muted);padding:40px}
 footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:14px}footer a{color:var(--muted);text-decoration:none;margin-right:16px}footer a:hover{color:var(--amber-d)}
 @media(max-width:860px){.posts{grid-template-columns:1fr}}
 </style></head><body>
-<header><div class="wrap nav"><a class="logo" href="/"><img src="/logo.png" alt="FBA PREP IDF" style="height:30px;width:auto;display:block"></a><a class="home" href="/">← Retour au site</a></div></header>
+<header><div class="wrap nav"><a class="logo" href="/"><img src="/logo.png" alt="FBA PREP IDF"></a><a class="home" href="/">&larr; Retour au site</a></div></header>
 <div class="wrap">
-<div class="head"><span class="eyebrow">Blog &amp; ressources</span><h1>Conseils Amazon FBA</h1><p>Nos guides pratiques pour préparer, expédier et vendre mieux sur Amazon.</p></div>
-<div class="posts"><a class="post" href="/blog/qu-est-ce-qu-un-prep-center-amazon"><span class="post-tag">Guide</span><h3>Qu'est-ce qu'un prep center Amazon ? Guide complet 2026</h3><p>Définition, rôle, prix et comment choisir un prep center Amazon FBA en France.</p><span class="post-meta"><span>8 min</span><span class="post-link">Lire l'article →</span></span></a><a class="post" href="/blog/choisir-prep-center-amazon-fba"><span class="post-tag">Guide</span><h3>Comment choisir un prep center Amazon FBA en France ?</h3><p>Délais, confidentialité, tarifs, localisation : les 6 critères qui comptent vraiment avant de confier votre stock.</p><span class="post-meta"><span>7 min</span><span class="post-link">Lire l'article →</span></span></a><a class="post" href="/blog/online-arbitrage-ou-wholesale"><span class="post-tag">Stratégie</span><h3>Online arbitrage ou wholesale : quelle préparation ?</h3><p>Ce qui change côté réception, contrôle et étiquetage selon votre mode d'approvisionnement.</p><span class="post-meta"><span>6 min</span><span class="post-link">Lire l'article →</span></span></a><a class="post" href="/blog/etiquetage-fnsku-erreurs"><span class="post-tag">Pratique</span><h3>Étiquetage FNSKU : les 5 erreurs qui bloquent vos envois</h3><p>Les erreurs les plus fréquentes que nous corrigeons chaque semaine — et comment les éviter.</p><span class="post-meta"><span>5 min</span><span class="post-link">Lire l'article →</span></span></a></div>
+<div class="head"><span class="eyebrow">Blog &amp; ressources</span><h1>Conseils prep center Amazon FBA</h1><p>Nos guides pour pr&eacute;parer, exp&eacute;dier et vendre mieux sur Amazon &mdash; d&eacute;finition, prix, choix du prep center et plus.</p></div>
+<div class="tools">
+  <div class="blog-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input id="blogSearch" type="text" placeholder="Rechercher un article&hellip;" aria-label="Rechercher un article">
+  </div>
+  <div class="cats" id="blogCats"></div>
+</div>
+<div class="posts" id="blogGrid">
+<a class="post" href="/blog/qu-est-ce-qu-un-prep-center-amazon" data-category="Guide"><span class="post-tag">Guide</span><h3>Qu'est-ce qu'un prep center Amazon ? Guide complet 2026</h3><p>D&eacute;finition, r&ocirc;le, prix et comment choisir un prep center Amazon FBA en France.</p><span class="post-meta"><span>8 min</span><span class="post-link">Lire l'article &rarr;</span></span></a>
+<a class="post" href="/blog/choisir-prep-center-amazon-fba" data-category="Guide"><span class="post-tag">Guide</span><h3>Comment choisir un prep center Amazon FBA en France ?</h3><p>D&eacute;lais, confidentialit&eacute;, tarifs, localisation : les 6 crit&egrave;res qui comptent vraiment avant de confier votre stock.</p><span class="post-meta"><span>7 min</span><span class="post-link">Lire l'article &rarr;</span></span></a>
+<a class="post" href="/blog/online-arbitrage-ou-wholesale" data-category="Stratégie"><span class="post-tag">Strat&eacute;gie</span><h3>Online arbitrage ou wholesale : quelle pr&eacute;paration ?</h3><p>Ce qui change c&ocirc;t&eacute; r&eacute;ception, contr&ocirc;le et &eacute;tiquetage selon votre mode d'approvisionnement.</p><span class="post-meta"><span>6 min</span><span class="post-link">Lire l'article &rarr;</span></span></a>
+<a class="post" href="/blog/etiquetage-fnsku-erreurs" data-category="Pratique"><span class="post-tag">Pratique</span><h3>&Eacute;tiquetage FNSKU : les 5 erreurs qui bloquent vos envois</h3><p>Les erreurs les plus fr&eacute;quentes que nous corrigeons chaque semaine &mdash; et comment les &eacute;viter.</p><span class="post-meta"><span>5 min</span><span class="post-link">Lire l'article &rarr;</span></span></a>
+<div class="nores" id="blogNores">Aucun article ne correspond &agrave; votre recherche.</div>
+</div>
 </div>
 <footer><div class="wrap"><a href="/">Accueil</a><a href="/blog">Blog</a><a href="/#tarifs">Tarifs</a><a href="/#faq">FAQ</a>
-<div style="margin-top:12px">© 2026 FBA PREP IDF · Saint-Prix (95), Île-de-France · contact@fbaprepidf.com</div></div></footer>
+<div style="margin-top:12px">&copy; 2026 LBKT SAS &mdash; FBA PREP IDF &middot; Saint-Prix (95), &Icirc;le-de-France &middot; contact@fbaprepidf.com</div></div></footer>
+<script>
+(function(){
+  var search=document.getElementById('blogSearch'),catsBox=document.getElementById('blogCats'),grid=document.getElementById('blogGrid'),nores=document.getElementById('blogNores');
+  if(!grid)return;
+  var cards=[].slice.call(grid.querySelectorAll('.post'));
+  var cats=['Tous']; cards.forEach(function(c){var k=c.getAttribute('data-category'); if(k&&cats.indexOf(k)<0)cats.push(k);});
+  var active='Tous';
+  function norm(s){return (s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();}
+  function apply(){var q=norm(search.value.trim()),n=0;
+    cards.forEach(function(c){var okCat=(active==='Tous'||c.getAttribute('data-category')===active),okTxt=norm(c.textContent).indexOf(q)>-1,show=okCat&&okTxt;c.style.display=show?'':'none';if(show)n++;});
+    if(nores)nores.style.display=n?'none':'block';}
+  cats.forEach(function(cat){var b=document.createElement('button');b.type='button';b.className='cat'+(cat==='Tous'?' active':'');b.textContent=cat;
+    b.addEventListener('click',function(){active=cat;catsBox.querySelectorAll('.cat').forEach(function(x){x.classList.toggle('active',x===b);});apply();});
+    catsBox.appendChild(b);});
+  search.addEventListener('input',apply);
+})();
+</script>
 </body></html>
