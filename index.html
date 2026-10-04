@@ -961,5 +961,23 @@
 <script>
 document.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){var n=document.querySelector('.nav-links');n.classList.remove('open');var b=document.querySelector('.burger');if(b)b.setAttribute('aria-expanded','false');});});
 </script>
+<script data-hash-reveal>
+/* Arrivée directe sur une ancre (#devis, #tarifs...) : on affiche tout et on recale la position */
+(function(){
+  if(!location.hash) return;
+  function show(){
+    try{
+      document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in');});
+      document.querySelectorAll('.step-card,.reason,.proc-item,.qa,.price-hero,.price-table').forEach(function(e){e.style.opacity=1;e.style.transform='none';});
+    }catch(x){}
+  }
+  function go(){
+    show();
+    try{var t=document.querySelector(location.hash); if(t) t.scrollIntoView();}catch(x){}
+  }
+  document.addEventListener('DOMContentLoaded',show);
+  window.addEventListener('load',function(){ go(); setTimeout(go,400); });
+})();
+</script>
 </body>
 </html>
